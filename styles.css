@@ -1,0 +1,656 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #1a365d;
+    --secondary-color: #2c5282;
+    --accent-color: #ed8936;
+    --background-dark: #0d1421;
+    --background-light: #1a2332;
+    --text-light: #e2e8f0;
+    --text-muted: #a0aec0;
+    --common-color: #718096;
+    --uncommon-color: #48bb78;
+    --rare-color: #ecc94b;
+    --mythic-color: #ed8936;
+    --water-tribe: #3182ce;
+    --fire-nation: #e53e3e;
+    --earth-kingdom: #38a169;
+    --air-nomads: #f6e05e;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background: linear-gradient(135deg, var(--background-dark) 0%, var(--background-light) 100%);
+    color: var(--text-light);
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    text-align: center;
+    padding: 2rem 1rem;
+    background: linear-gradient(180deg, rgba(26, 54, 93, 0.8) 0%, transparent 100%);
+    border-bottom: 2px solid var(--accent-color);
+}
+
+header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 0.5rem;
+}
+
+header .subtitle {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+}
+
+/* Main Content */
+main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+/* Summary Section */
+.summary-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.summary-card {
+    background: var(--background-light);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(237, 137, 54, 0.3);
+}
+
+.summary-card h2 {
+    font-family: 'Cinzel', serif;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.progress-ring-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+}
+
+.progress-ring {
+    transform: rotate(-90deg);
+}
+
+.progress-ring-bg {
+    fill: none;
+    stroke: var(--background-dark);
+    stroke-width: 8;
+}
+
+.progress-ring-fill {
+    fill: none;
+    stroke: var(--accent-color);
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-dasharray: 326.73;
+    stroke-dashoffset: 326.73;
+    transition: stroke-dashoffset 1s ease-in-out;
+}
+
+.progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.percentage {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-top: 0.5rem;
+}
+
+/* Rarity Section */
+.rarity-section {
+    margin-bottom: 2rem;
+}
+
+.rarity-section h2 {
+    font-family: 'Cinzel', serif;
+    color: var(--accent-color);
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.rarity-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.rarity-card {
+    background: var(--background-light);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.rarity-card:hover {
+    transform: translateY(-5px);
+}
+
+.rarity-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.rarity-card.common .rarity-icon {
+    background: var(--common-color);
+    color: white;
+}
+
+.rarity-card.uncommon .rarity-icon {
+    background: var(--uncommon-color);
+    color: white;
+}
+
+.rarity-card.rare .rarity-icon {
+    background: var(--rare-color);
+    color: var(--background-dark);
+}
+
+.rarity-card.mythic .rarity-icon {
+    background: linear-gradient(135deg, var(--mythic-color), #c05621);
+    color: white;
+}
+
+.rarity-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-light);
+}
+
+.rarity-count {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.rarity-bar {
+    height: 8px;
+    background: var(--background-dark);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.rarity-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 1s ease-in-out;
+    width: 0%;
+}
+
+.rarity-card.common .rarity-bar-fill {
+    background: var(--common-color);
+}
+
+.rarity-card.uncommon .rarity-bar-fill {
+    background: var(--uncommon-color);
+}
+
+.rarity-card.rare .rarity-bar-fill {
+    background: var(--rare-color);
+}
+
+.rarity-card.mythic .rarity-bar-fill {
+    background: var(--mythic-color);
+}
+
+/* Filter Section */
+.filter-section {
+    margin-bottom: 2rem;
+    background: var(--background-light);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.filter-section h2 {
+    font-family: 'Cinzel', serif;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.filter-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.filter-controls select,
+.filter-controls input {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--secondary-color);
+    border-radius: 8px;
+    background: var(--background-dark);
+    color: var(--text-light);
+    font-size: 1rem;
+    min-width: 180px;
+    cursor: pointer;
+}
+
+.filter-controls select:focus,
+.filter-controls input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+.filter-controls input {
+    flex-grow: 1;
+}
+
+/* Binder Section */
+.binder-section {
+    margin-bottom: 2rem;
+}
+
+.binder-section h2 {
+    font-family: 'Cinzel', serif;
+    color: var(--accent-color);
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.binder-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+}
+
+.card-slot {
+    aspect-ratio: 488 / 680;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: var(--background-light);
+}
+
+.card-slot:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 30px rgba(237, 137, 54, 0.3);
+    z-index: 10;
+}
+
+.card-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.3s ease;
+}
+
+.card-slot.missing img {
+    filter: grayscale(100%) brightness(0.5);
+}
+
+.card-slot.missing::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+}
+
+.card-slot .card-number {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.card-slot .card-rarity-indicator {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+
+.card-slot .card-rarity-indicator.common {
+    background: var(--common-color);
+}
+
+.card-slot .card-rarity-indicator.uncommon {
+    background: var(--uncommon-color);
+}
+
+.card-slot .card-rarity-indicator.rare {
+    background: var(--rare-color);
+    color: var(--background-dark);
+}
+
+.card-slot .card-rarity-indicator.mythic {
+    background: var(--mythic-color);
+}
+
+.card-slot .owned-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: var(--uncommon-color);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.card-slot .foil-badge {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    background: linear-gradient(135deg, #a855f7, #3b82f6, #22c55e, #eab308);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Loading State */
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--background-light);
+    border-top-color: var(--accent-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading p {
+    margin-top: 1rem;
+    color: var(--text-muted);
+}
+
+/* Error State */
+.error {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(229, 62, 62, 0.1);
+    border: 1px solid #e53e3e;
+    border-radius: 12px;
+}
+
+.error button {
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--accent-color);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.error button:hover {
+    background: #c05621;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+}
+
+.modal-content {
+    background: var(--background-light);
+    border-radius: 16px;
+    max-width: 800px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: var(--background-dark);
+    color: var(--text-light);
+    font-size: 1.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.3s ease;
+}
+
+.modal-close:hover {
+    background: var(--accent-color);
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+}
+
+@media (min-width: 600px) {
+    .modal-body {
+        flex-direction: row;
+        gap: 2rem;
+    }
+}
+
+.modal-body img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 12px;
+    margin: 0 auto 1rem;
+}
+
+@media (min-width: 600px) {
+    .modal-body img {
+        margin: 0;
+    }
+}
+
+.modal-info {
+    flex: 1;
+}
+
+.modal-info h2 {
+    font-family: 'Cinzel', serif;
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+}
+
+.modal-info > p {
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+.modal-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.rarity-badge,
+.color-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.rarity-badge.common {
+    background: var(--common-color);
+}
+
+.rarity-badge.uncommon {
+    background: var(--uncommon-color);
+}
+
+.rarity-badge.rare {
+    background: var(--rare-color);
+    color: var(--background-dark);
+}
+
+.rarity-badge.mythic {
+    background: var(--mythic-color);
+}
+
+.color-badge {
+    background: var(--secondary-color);
+}
+
+.modal-prices {
+    background: var(--background-dark);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.modal-prices p {
+    margin-bottom: 0.5rem;
+}
+
+.modal-prices p:last-child {
+    margin-bottom: 0;
+}
+
+.modal-status {
+    background: var(--background-dark);
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.modal-status p {
+    margin-bottom: 0.5rem;
+}
+
+.modal-status p:last-child {
+    margin-bottom: 0;
+}
+
+.modal-status .owned {
+    color: var(--uncommon-color);
+}
+
+.modal-status .missing {
+    color: #e53e3e;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--secondary-color);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    .binder-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+
+    .filter-controls {
+        flex-direction: column;
+    }
+
+    .filter-controls select,
+    .filter-controls input {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.4rem;
+    }
+
+    .binder-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 0.5rem;
+    }
+
+    .rarity-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

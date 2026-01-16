@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTG Avatar: The Last Airbender - Collection Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>MTG x Avatar: The Last Airbender</h1>
+        <p class="subtitle">Collection Tracker</p>
+    </header>
+
+    <main>
+        <!-- Summary Section -->
+        <section id="summary" class="summary-section">
+            <div class="summary-card total">
+                <h2>Colección Total</h2>
+                <div class="progress-ring-container">
+                    <svg class="progress-ring" width="120" height="120">
+                        <circle class="progress-ring-bg" cx="60" cy="60" r="52"/>
+                        <circle class="progress-ring-fill" id="total-progress" cx="60" cy="60" r="52"/>
+                    </svg>
+                    <div class="progress-text">
+                        <span id="owned-count">0</span>/<span id="total-count">0</span>
+                    </div>
+                </div>
+                <p class="percentage" id="total-percentage">0%</p>
+            </div>
+        </section>
+
+        <!-- Rarity Stats Section -->
+        <section id="rarity-stats" class="rarity-section">
+            <h2>Por Rareza</h2>
+            <div class="rarity-grid">
+                <div class="rarity-card common">
+                    <div class="rarity-icon">C</div>
+                    <h3>Comunes</h3>
+                    <p class="rarity-count"><span id="common-owned">0</span>/<span id="common-total">0</span></p>
+                    <div class="rarity-bar">
+                        <div class="rarity-bar-fill" id="common-bar"></div>
+                    </div>
+                </div>
+                <div class="rarity-card uncommon">
+                    <div class="rarity-icon">U</div>
+                    <h3>Poco Comunes</h3>
+                    <p class="rarity-count"><span id="uncommon-owned">0</span>/<span id="uncommon-total">0</span></p>
+                    <div class="rarity-bar">
+                        <div class="rarity-bar-fill" id="uncommon-bar"></div>
+                    </div>
+                </div>
+                <div class="rarity-card rare">
+                    <div class="rarity-icon">R</div>
+                    <h3>Raras</h3>
+                    <p class="rarity-count"><span id="rare-owned">0</span>/<span id="rare-total">0</span></p>
+                    <div class="rarity-bar">
+                        <div class="rarity-bar-fill" id="rare-bar"></div>
+                    </div>
+                </div>
+                <div class="rarity-card mythic">
+                    <div class="rarity-icon">M</div>
+                    <h3>Míticas</h3>
+                    <p class="rarity-count"><span id="mythic-owned">0</span>/<span id="mythic-total">0</span></p>
+                    <div class="rarity-bar">
+                        <div class="rarity-bar-fill" id="mythic-bar"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filter Section -->
+        <section id="filters" class="filter-section">
+            <h2>Filtros</h2>
+            <div class="filter-controls">
+                <select id="filter-rarity">
+                    <option value="all">Todas las rarezas</option>
+                    <option value="Common">Comunes</option>
+                    <option value="Uncommon">Poco Comunes</option>
+                    <option value="Rare">Raras</option>
+                    <option value="Mythic">Míticas</option>
+                </select>
+                <select id="filter-owned">
+                    <option value="all">Todas</option>
+                    <option value="owned">Obtenidas</option>
+                    <option value="missing">Faltantes</option>
+                </select>
+                <select id="filter-color">
+                    <option value="all">Todos los colores</option>
+                    <option value="W">Blanco</option>
+                    <option value="U">Azul</option>
+                    <option value="B">Negro</option>
+                    <option value="R">Rojo</option>
+                    <option value="G">Verde</option>
+                    <option value="Multicolor">Multicolor</option>
+                    <option value="Colorless">Incoloro</option>
+                </select>
+                <input type="text" id="search-input" placeholder="Buscar por nombre...">
+            </div>
+        </section>
+
+        <!-- Binder Section -->
+        <section id="binder" class="binder-section">
+            <h2>Binder</h2>
+            <div id="binder-grid" class="binder-grid">
+                <!-- Cards will be dynamically inserted here -->
+            </div>
+        </section>
+
+        <!-- Loading State -->
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Cargando colección...</p>
+        </div>
+
+        <!-- Error State -->
+        <div id="error" class="error hidden">
+            <p>Error al cargar los datos. Asegúrate de que el Google Sheet esté publicado.</p>
+            <button onclick="loadData()">Reintentar</button>
+        </div>
+    </main>
+
+    <!-- Card Detail Modal -->
+    <div id="card-modal" class="modal hidden">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div class="modal-body">
+                <img id="modal-image" src="" alt="">
+                <div class="modal-info">
+                    <h2 id="modal-name"></h2>
+                    <p id="modal-type"></p>
+                    <div class="modal-details">
+                        <span id="modal-rarity" class="rarity-badge"></span>
+                        <span id="modal-color" class="color-badge"></span>
+                        <span id="modal-mana"></span>
+                    </div>
+                    <div class="modal-prices">
+                        <p>Precio USD: <span id="modal-price"></span></p>
+                        <p>Precio Foil: <span id="modal-price-foil"></span></p>
+                    </div>
+                    <div class="modal-status">
+                        <p id="modal-owned-status"></p>
+                        <p id="modal-quantity"></p>
+                        <p id="modal-foil"></p>
+                        <p id="modal-notes"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>MTG Avatar Collection Tracker</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
