@@ -108,6 +108,26 @@
                     <option value="Colorless">Incoloro</option>
                 </select>
                 <input type="text" id="search-input" placeholder="Buscar por nombre...">
+                <div class="view-toggle" role="group" aria-label="Vista">
+                    <button type="button" id="view-grid" class="view-toggle-button active" aria-pressed="true" aria-label="Vista de grid">
+                        <svg aria-hidden="true" viewBox="0 0 24 24">
+                            <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+                            <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+                            <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+                            <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+                        </svg>
+                    </button>
+                    <button type="button" id="view-list" class="view-toggle-button" aria-pressed="false" aria-label="Vista de lista">
+                        <svg aria-hidden="true" viewBox="0 0 24 24">
+                            <rect x="4" y="5" width="3" height="3" rx="1"></rect>
+                            <rect x="4" y="10.5" width="3" height="3" rx="1"></rect>
+                            <rect x="4" y="16" width="3" height="3" rx="1"></rect>
+                            <line x1="9" y1="6.5" x2="20" y2="6.5"></line>
+                            <line x1="9" y1="12" x2="20" y2="12"></line>
+                            <line x1="9" y1="17.5" x2="20" y2="17.5"></line>
+                        </svg>
+                    </button>
+                </div>
             </div>
         </section>
 

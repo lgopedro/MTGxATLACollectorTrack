@@ -8,6 +8,7 @@ const SHEETS_URL = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gvi
 // State
 let allCards = [];
 let filteredCards = [];
+let viewMode = 'grid';
 
 // Column mapping (adjust indices based on your sheet structure)
 const COLUMNS = {
@@ -40,6 +41,8 @@ function setupEventListeners() {
     document.getElementById('filter-owned').addEventListener('change', applyFilters);
     document.getElementById('filter-color').addEventListener('change', applyFilters);
     document.getElementById('search-input').addEventListener('input', debounce(applyFilters, 300));
+    document.getElementById('view-grid').addEventListener('click', () => setViewMode('grid'));
+    document.getElementById('view-list').addEventListener('click', () => setViewMode('list'));
 
     // Close modal on outside click
     document.getElementById('card-modal').addEventListener('click', (e) => {
@@ -54,6 +57,17 @@ function setupEventListeners() {
             closeModal();
         }
     });
+}
+
+function setViewMode(mode) {
+    viewMode = mode;
+    const gridButton = document.getElementById('view-grid');
+    const listButton = document.getElementById('view-list');
+    gridButton.classList.toggle('active', mode === 'grid');
+    listButton.classList.toggle('active', mode === 'list');
+    gridButton.setAttribute('aria-pressed', mode === 'grid');
+    listButton.setAttribute('aria-pressed', mode === 'list');
+    renderBinder();
 }
 
 // Debounce function
@@ -275,6 +289,7 @@ function normalizeColor(color) {
 function renderBinder() {
     const binderGrid = document.getElementById('binder-grid');
     binderGrid.innerHTML = '';
+    binderGrid.classList.toggle('list-view', viewMode === 'list');
 
     // Sort cards by number
     const sortedCards = [...filteredCards].sort((a, b) => {
@@ -284,7 +299,7 @@ function renderBinder() {
     });
 
     sortedCards.forEach(card => {
-        const cardElement = createCardElement(card);
+        const cardElement = viewMode === 'list' ? createListRow(card) : createCardElement(card);
         binderGrid.appendChild(cardElement);
     });
 }
@@ -336,6 +351,39 @@ function createCardElement(card) {
     div.appendChild(rarityIndicator);
 
     return div;
+}
+
+function createListRow(card) {
+    const row = document.createElement('div');
+    row.className = `card-row rarity-${normalizeRarity(card.rarity).toLowerCase()}`;
+    row.onclick = () => openModal(card);
+
+    const number = document.createElement('span');
+    number.className = 'row-number';
+    number.textContent = card.number ? `#${card.number}` : '-';
+    row.appendChild(number);
+
+    const name = document.createElement('span');
+    name.className = 'row-name';
+    name.textContent = card.name;
+    row.appendChild(name);
+
+    const rarity = document.createElement('span');
+    rarity.className = `row-rarity ${normalizeRarity(card.rarity).toLowerCase()}`;
+    rarity.textContent = normalizeRarity(card.rarity);
+    row.appendChild(rarity);
+
+    const status = document.createElement('span');
+    status.className = `row-owned ${card.owned ? 'owned' : 'missing'}`;
+    status.textContent = card.owned ? 'Obtenida' : 'Faltante';
+    row.appendChild(status);
+
+    const price = document.createElement('span');
+    price.className = 'row-price';
+    price.textContent = card.priceUsd ? `$${card.priceUsd}` : 'N/A';
+    row.appendChild(price);
+
+    return row;
 }
 
 // Prefer higher-res card images when available (e.g. Scryfall URLs)

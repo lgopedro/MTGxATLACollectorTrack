@@ -303,6 +303,44 @@ main {
     gap: 0.75rem;
 }
 
+.view-toggle {
+    display: inline-flex;
+    gap: 0.4rem;
+    align-items: center;
+}
+
+.view-toggle-button {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--text-light);
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.view-toggle-button.active {
+    background: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0.25);
+}
+
+.view-toggle-button svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
 .filter-controls select,
 .filter-controls input {
     padding: 0.7rem 2rem 0.7rem 1rem;
@@ -354,6 +392,102 @@ main {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 1.25rem;
+}
+
+.binder-grid.list-view {
+    display: block;
+}
+
+.card-row {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.65rem 0.9rem;
+    margin-bottom: 0.7rem;
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+}
+
+.card-row .row-number {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    color: var(--text-light);
+    min-width: 60px;
+}
+
+.card-row .row-name {
+    flex: 1;
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.card-row .row-rarity {
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+}
+
+.card-row .row-rarity.common {
+    background: var(--common-color);
+    color: var(--text-white);
+}
+
+.card-row .row-rarity.uncommon {
+    background: var(--uncommon-color);
+    color: var(--bg-dark);
+}
+
+.card-row .row-rarity.rare {
+    background: var(--rare-color);
+    color: var(--bg-dark);
+}
+
+.card-row .row-rarity.mythic {
+    background: var(--mythic-color);
+    color: var(--text-white);
+}
+
+.card-row .row-owned {
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+}
+
+.card-row .row-owned.owned {
+    background: var(--earth-primary);
+    color: var(--text-white);
+}
+
+.card-row .row-owned.missing {
+    background: var(--primary-red);
+    color: var(--text-white);
+}
+
+.card-row .row-price {
+    font-weight: 600;
+    color: var(--text-light);
+    min-width: 70px;
+    text-align: right;
+}
+
+@media (max-width: 600px) {
+    .card-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.4rem;
+    }
+
+    .card-row .row-number {
+        min-width: unset;
+    }
 }
 
 /* Card Slot */
