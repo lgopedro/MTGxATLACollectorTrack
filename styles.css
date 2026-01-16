@@ -167,6 +167,12 @@ main {
     padding: 0 1rem 1.5rem;
     position: relative;
     z-index: 5;
+    background:
+        linear-gradient(180deg, rgba(239, 232, 222, 0.75) 0%, rgba(239, 232, 222, 0.85) 100%),
+        url('https://images.ctfassets.net/s5n2t79q9icq/7cG61SMgdr7tiyXIVx9MZk/e7ba20e0316166c6166c0b2abcbbb412/iDEX9UWQaz.jpg');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
 }
 
 /* Stats Summary Section - Compact inline */
