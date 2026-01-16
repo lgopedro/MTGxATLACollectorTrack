@@ -157,13 +157,7 @@ function updateTotalStats() {
 
     document.getElementById('owned-count').textContent = owned;
     document.getElementById('total-count').textContent = total;
-    document.getElementById('total-percentage').textContent = `${percentage}%`;
-
-    // Animate progress ring
-    const progressRing = document.getElementById('total-progress');
-    const circumference = 2 * Math.PI * 52; // radius = 52
-    const offset = circumference - (percentage / 100) * circumference;
-    progressRing.style.strokeDashoffset = offset;
+    document.getElementById('total-percentage').textContent = percentage;
 }
 
 // Update rarity statistics
@@ -213,9 +207,6 @@ function normalizeRarity(rarity) {
 function updateRarityCard(rarityClass, stats) {
     document.getElementById(`${rarityClass}-owned`).textContent = stats.owned;
     document.getElementById(`${rarityClass}-total`).textContent = stats.total;
-
-    const percentage = stats.total > 0 ? (stats.owned / stats.total) * 100 : 0;
-    document.getElementById(`${rarityClass}-bar`).style.width = `${percentage}%`;
 }
 
 // Apply filters
@@ -301,7 +292,14 @@ function renderBinder() {
 // Create card element
 function createCardElement(card) {
     const div = document.createElement('div');
-    div.className = `card-slot ${card.owned ? 'owned' : 'missing'}`;
+
+    // Build class list
+    let classes = ['card-slot'];
+    classes.push(card.owned ? 'owned' : 'missing');
+    if (card.foil && card.owned) {
+        classes.push('foil');
+    }
+    div.className = classes.join(' ');
     div.onclick = () => openModal(card);
 
     // Card image
@@ -313,6 +311,13 @@ function createCardElement(card) {
         img.src = 'https://via.placeholder.com/244x340?text=No+Image';
     };
     div.appendChild(img);
+
+    // Foil overlay (for holographic effect)
+    if (card.foil && card.owned) {
+        const foilOverlay = document.createElement('div');
+        foilOverlay.className = 'foil-overlay';
+        div.appendChild(foilOverlay);
+    }
 
     // Card number badge
     if (card.number) {
@@ -331,7 +336,7 @@ function createCardElement(card) {
     }
 
     // Foil badge
-    if (card.foil) {
+    if (card.foil && card.owned) {
         const foilBadge = document.createElement('span');
         foilBadge.className = 'foil-badge';
         foilBadge.textContent = 'FOIL';
@@ -410,20 +415,17 @@ function getColorName(color) {
 function showLoading(show) {
     const loading = document.getElementById('loading');
     const summary = document.getElementById('summary');
-    const rarityStats = document.getElementById('rarity-stats');
     const filters = document.getElementById('filters');
     const binder = document.getElementById('binder');
 
     if (show) {
         loading.classList.remove('hidden');
         summary.classList.add('hidden');
-        rarityStats.classList.add('hidden');
         filters.classList.add('hidden');
         binder.classList.add('hidden');
     } else {
         loading.classList.add('hidden');
         summary.classList.remove('hidden');
-        rarityStats.classList.remove('hidden');
         filters.classList.remove('hidden');
         binder.classList.remove('hidden');
     }

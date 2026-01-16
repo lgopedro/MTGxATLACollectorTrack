@@ -3,76 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MTG Avatar: The Last Airbender - Collection Tracker</title>
+    <title>MTG x Avatar: The Last Airbender - Collection Tracker</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="https://magic.wizards.com/assets/favicon.ico">
 </head>
 <body>
-    <header>
-        <h1>MTG x Avatar: The Last Airbender</h1>
-        <p class="subtitle">Collection Tracker</p>
-    </header>
+    <!-- SVG Definitions for gradients -->
+    <svg class="svg-defs" aria-hidden="true">
+        <defs>
+            <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#f7e7a3"/>
+                <stop offset="50%" style="stop-color:#d4a843"/>
+                <stop offset="100%" style="stop-color:#8b6914"/>
+            </linearGradient>
+            <linearGradient id="fireGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#ea3601"/>
+                <stop offset="100%" style="stop-color:#d84b34"/>
+            </linearGradient>
+        </defs>
+    </svg>
+
+    <!-- Hero Section with Background -->
+    <div class="hero-background">
+        <div class="hero-overlay"></div>
+
+        <header>
+            <!-- Logos Section -->
+            <div class="logos-container">
+                <img src="https://images.ctfassets.net/s5n2t79q9icq/3dB5uyWzUH95O1ZPBNNUX5/6cff7c65a809285755ea24b164b6ac65/magic-logo.png"
+                     alt="Magic: The Gathering Logo"
+                     class="mtg-logo">
+                <span class="logo-separator">×</span>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/1d/Logo_de_Avatar_la_leyenda_de_Aang.png"
+                     alt="Avatar: The Last Airbender Logo"
+                     class="avatar-logo">
+            </div>
+
+            <h1>Collection Tracker</h1>
+            <p class="subtitle">Master the Elements. Complete Your Collection.</p>
+        </header>
+    </div>
 
     <main>
-        <!-- Summary Section -->
-        <section id="summary" class="summary-section">
-            <div class="summary-card total">
-                <h2>Colección Total</h2>
-                <div class="progress-ring-container">
-                    <svg class="progress-ring" width="120" height="120">
-                        <circle class="progress-ring-bg" cx="60" cy="60" r="52"/>
-                        <circle class="progress-ring-fill" id="total-progress" cx="60" cy="60" r="52"/>
-                    </svg>
-                    <div class="progress-text">
-                        <span id="owned-count">0</span>/<span id="total-count">0</span>
-                    </div>
+        <!-- Stats Summary Section - All in one line -->
+        <section id="summary" class="stats-summary">
+            <!-- Main Percentage -->
+            <div class="main-stat">
+                <div class="percentage-display">
+                    <span class="percentage-number" id="total-percentage">0</span>
+                    <span class="percentage-symbol">%</span>
                 </div>
-                <p class="percentage" id="total-percentage">0%</p>
+                <div class="total-count">
+                    <span id="owned-count">0</span> / <span id="total-count">0</span> cartas
+                </div>
             </div>
-        </section>
 
-        <!-- Rarity Stats Section -->
-        <section id="rarity-stats" class="rarity-section">
-            <h2>Por Rareza</h2>
-            <div class="rarity-grid">
-                <div class="rarity-card common">
-                    <div class="rarity-icon">C</div>
-                    <h3>Comunes</h3>
-                    <p class="rarity-count"><span id="common-owned">0</span>/<span id="common-total">0</span></p>
-                    <div class="rarity-bar">
-                        <div class="rarity-bar-fill" id="common-bar"></div>
-                    </div>
+            <!-- Rarity Stats Row -->
+            <div class="rarity-stats-row">
+                <div class="rarity-stat common">
+                    <span class="rarity-label">C</span>
+                    <span class="rarity-value"><span id="common-owned">0</span>/<span id="common-total">0</span></span>
                 </div>
-                <div class="rarity-card uncommon">
-                    <div class="rarity-icon">U</div>
-                    <h3>Poco Comunes</h3>
-                    <p class="rarity-count"><span id="uncommon-owned">0</span>/<span id="uncommon-total">0</span></p>
-                    <div class="rarity-bar">
-                        <div class="rarity-bar-fill" id="uncommon-bar"></div>
-                    </div>
+                <div class="rarity-stat uncommon">
+                    <span class="rarity-label">U</span>
+                    <span class="rarity-value"><span id="uncommon-owned">0</span>/<span id="uncommon-total">0</span></span>
                 </div>
-                <div class="rarity-card rare">
-                    <div class="rarity-icon">R</div>
-                    <h3>Raras</h3>
-                    <p class="rarity-count"><span id="rare-owned">0</span>/<span id="rare-total">0</span></p>
-                    <div class="rarity-bar">
-                        <div class="rarity-bar-fill" id="rare-bar"></div>
-                    </div>
+                <div class="rarity-stat rare">
+                    <span class="rarity-label">R</span>
+                    <span class="rarity-value"><span id="rare-owned">0</span>/<span id="rare-total">0</span></span>
                 </div>
-                <div class="rarity-card mythic">
-                    <div class="rarity-icon">M</div>
-                    <h3>Míticas</h3>
-                    <p class="rarity-count"><span id="mythic-owned">0</span>/<span id="mythic-total">0</span></p>
-                    <div class="rarity-bar">
-                        <div class="rarity-bar-fill" id="mythic-bar"></div>
-                    </div>
+                <div class="rarity-stat mythic">
+                    <span class="rarity-label">M</span>
+                    <span class="rarity-value"><span id="mythic-owned">0</span>/<span id="mythic-total">0</span></span>
                 </div>
             </div>
         </section>
 
         <!-- Filter Section -->
         <section id="filters" class="filter-section">
-            <h2>Filtros</h2>
             <div class="filter-controls">
                 <select id="filter-rarity">
                     <option value="all">Todas las rarezas</option>
@@ -102,7 +113,6 @@
 
         <!-- Binder Section -->
         <section id="binder" class="binder-section">
-            <h2>Binder</h2>
             <div id="binder-grid" class="binder-grid">
                 <!-- Cards will be dynamically inserted here -->
             </div>
@@ -151,7 +161,13 @@
     </div>
 
     <footer>
-        <p>MTG Avatar Collection Tracker</p>
+        <div class="footer-content">
+            <img src="https://images.ctfassets.net/s5n2t79q9icq/3dB5uyWzUH95O1ZPBNNUX5/6cff7c65a809285755ea24b164b6ac65/magic-logo.png"
+                 alt="MTG Logo"
+                 class="footer-logo">
+            <p>MTG x Avatar: The Last Airbender Collection Tracker</p>
+            <p class="footer-disclaimer">Fan-made tracker. Not affiliated with Wizards of the Coast or Nickelodeon.</p>
+        </div>
     </footer>
 
     <script src="app.js"></script>

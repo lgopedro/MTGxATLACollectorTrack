@@ -6,269 +6,313 @@
 }
 
 :root {
-    --primary-color: #1a365d;
-    --secondary-color: #2c5282;
-    --accent-color: #ed8936;
-    --background-dark: #0d1421;
-    --background-light: #1a2332;
-    --text-light: #e2e8f0;
-    --text-muted: #a0aec0;
-    --common-color: #718096;
-    --uncommon-color: #48bb78;
-    --rare-color: #ecc94b;
-    --mythic-color: #ed8936;
-    --water-tribe: #3182ce;
-    --fire-nation: #e53e3e;
-    --earth-kingdom: #38a169;
-    --air-nomads: #f6e05e;
+    /* Official MTG Avatar Colors */
+    --primary-red: #d84b34;
+    --primary-red-light: #ea3601;
+    --primary-red-dark: #b93b0d;
+
+    /* Background Colors */
+    --bg-dark: #2e2e33;
+    --bg-darker: #222222;
+    --bg-darkest: #1a1a1f;
+    --bg-card: #3a3a40;
+    --bg-card-hover: #43484f;
+
+    /* Text Colors */
+    --text-white: #ffffff;
+    --text-light: #f2f5fa;
+    --text-gray: #e2e6ee;
+    --text-muted: #858585;
+
+    /* Accent Colors */
+    --accent-purple: #9c63ff;
+    --accent-gold: #d4a843;
+    --accent-gold-light: #f7e7a3;
+
+    /* Element Colors - Four Nations */
+    --water-primary: #3a8dc1;
+    --earth-primary: #5a8a3c;
+    --fire-primary: #d84b34;
+    --air-primary: #f0d55c;
+
+    /* Rarity Colors */
+    --common-color: #535356;
+    --uncommon-color: #858585;
+    --rare-color: #d4a843;
+    --mythic-color: #ea3601;
 }
 
 body {
-    font-family: 'Open Sans', sans-serif;
-    background: linear-gradient(135deg, var(--background-dark) 0%, var(--background-light) 100%);
+    font-family: 'Montserrat', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg-darkest);
     color: var(--text-light);
     min-height: 100vh;
     line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* SVG Definitions */
+.svg-defs {
+    position: absolute;
+    width: 0;
+    height: 0;
+}
+
+/* Hero Background Section */
+.hero-background {
+    position: relative;
+    min-height: 320px;
+    background-image: url('https://images.ctfassets.net/s5n2t79q9icq/7cG61SMgdr7tiyXIVx9MZk/e7ba20e0316166c6166c0b2abcbbb412/iDEX9UWQaz.jpg');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(30, 30, 35, 0.4) 0%,
+        rgba(30, 30, 35, 0.7) 60%,
+        rgba(26, 26, 31, 1) 100%
+    );
+    pointer-events: none;
 }
 
 /* Header */
 header {
+    position: relative;
+    z-index: 10;
     text-align: center;
-    padding: 2rem 1rem;
-    background: linear-gradient(180deg, rgba(26, 54, 93, 0.8) 0%, transparent 100%);
-    border-bottom: 2px solid var(--accent-color);
+    padding: 2.5rem 1rem 2rem;
+}
+
+/* Logos Container */
+.logos-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.mtg-logo {
+    height: 45px;
+    width: auto;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+    transition: transform 0.3s ease;
+}
+
+.mtg-logo:hover {
+    transform: scale(1.05);
+}
+
+.logo-separator {
+    font-size: 2rem;
+    color: var(--primary-red);
+    font-weight: 300;
+    opacity: 0.8;
+}
+
+.avatar-logo {
+    height: 70px;
+    width: auto;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+    transition: transform 0.3s ease;
+}
+
+.avatar-logo:hover {
+    transform: scale(1.05);
 }
 
 header h1 {
-    font-family: 'Cinzel', serif;
-    font-size: 2.5rem;
-    color: var(--accent-color);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    margin-bottom: 0.5rem;
+    font-family: 'Cinzel', 'Times New Roman', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    color: var(--text-white);
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+    margin-bottom: 0.3rem;
 }
 
 header .subtitle {
-    font-size: 1.2rem;
-    color: var(--text-muted);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text-gray);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 400;
+    opacity: 0.8;
 }
 
 /* Main Content */
 main {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 2rem 1rem;
+    padding: 1.5rem 1rem;
+    position: relative;
+    z-index: 5;
 }
 
-/* Summary Section */
-.summary-section {
+/* Stats Summary Section - Compact inline */
+.stats-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: linear-gradient(145deg, var(--bg-card) 0%, var(--bg-dark) 100%);
+    border-radius: 12px;
+    border: 1px solid rgba(216, 75, 52, 0.2);
+}
+
+.main-stat {
+    text-align: center;
+}
+
+.percentage-display {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.1rem;
+}
+
+.percentage-number {
+    font-family: 'Cinzel', serif;
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--primary-red);
+    line-height: 1;
+    text-shadow: 0 0 30px rgba(216, 75, 52, 0.4);
+}
+
+.percentage-symbol {
+    font-family: 'Cinzel', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--primary-red);
+    opacity: 0.8;
+}
+
+.total-count {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-top: 0.3rem;
+    letter-spacing: 1px;
+}
+
+/* Rarity Stats Row - Inline */
+.rarity-stats-row {
     display: flex;
     justify-content: center;
-    margin-bottom: 2rem;
+    gap: 1.5rem;
+    flex-wrap: wrap;
 }
 
-.summary-card {
-    background: var(--background-light);
-    border-radius: 16px;
-    padding: 2rem;
-    text-align: center;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(237, 137, 54, 0.3);
+.rarity-stat {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    background: var(--bg-darker);
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.summary-card h2 {
+.rarity-label {
     font-family: 'Cinzel', serif;
-    color: var(--accent-color);
-    margin-bottom: 1rem;
-}
-
-.progress-ring-container {
-    position: relative;
-    width: 120px;
-    height: 120px;
-    margin: 0 auto;
-}
-
-.progress-ring {
-    transform: rotate(-90deg);
-}
-
-.progress-ring-bg {
-    fill: none;
-    stroke: var(--background-dark);
-    stroke-width: 8;
-}
-
-.progress-ring-fill {
-    fill: none;
-    stroke: var(--accent-color);
-    stroke-width: 8;
-    stroke-linecap: round;
-    stroke-dasharray: 326.73;
-    stroke-dashoffset: 326.73;
-    transition: stroke-dashoffset 1s ease-in-out;
-}
-
-.progress-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 1.2rem;
-    font-weight: 600;
-}
-
-.percentage {
-    font-size: 1.5rem;
+    font-size: 0.85rem;
     font-weight: 700;
-    color: var(--accent-color);
-    margin-top: 0.5rem;
-}
-
-/* Rarity Section */
-.rarity-section {
-    margin-bottom: 2rem;
-}
-
-.rarity-section h2 {
-    font-family: 'Cinzel', serif;
-    color: var(--accent-color);
-    text-align: center;
-    margin-bottom: 1.5rem;
-}
-
-.rarity-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-}
-
-.rarity-card {
-    background: var(--background-light);
-    border-radius: 12px;
-    padding: 1.5rem;
-    text-align: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease;
-}
-
-.rarity-card:hover {
-    transform: translateY(-5px);
-}
-
-.rarity-icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+    width: 22px;
+    height: 22px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 1rem;
-    font-weight: 700;
-    font-size: 1.5rem;
+    border-radius: 50%;
 }
 
-.rarity-card.common .rarity-icon {
+.rarity-stat.common .rarity-label {
     background: var(--common-color);
-    color: white;
+    color: var(--text-white);
 }
 
-.rarity-card.uncommon .rarity-icon {
+.rarity-stat.uncommon .rarity-label {
     background: var(--uncommon-color);
-    color: white;
+    color: var(--bg-dark);
 }
 
-.rarity-card.rare .rarity-icon {
+.rarity-stat.rare .rarity-label {
     background: var(--rare-color);
-    color: var(--background-dark);
+    color: var(--bg-dark);
 }
 
-.rarity-card.mythic .rarity-icon {
-    background: linear-gradient(135deg, var(--mythic-color), #c05621);
-    color: white;
-}
-
-.rarity-card h3 {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-    color: var(--text-light);
-}
-
-.rarity-count {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-}
-
-.rarity-bar {
-    height: 8px;
-    background: var(--background-dark);
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-.rarity-bar-fill {
-    height: 100%;
-    border-radius: 4px;
-    transition: width 1s ease-in-out;
-    width: 0%;
-}
-
-.rarity-card.common .rarity-bar-fill {
-    background: var(--common-color);
-}
-
-.rarity-card.uncommon .rarity-bar-fill {
-    background: var(--uncommon-color);
-}
-
-.rarity-card.rare .rarity-bar-fill {
-    background: var(--rare-color);
-}
-
-.rarity-card.mythic .rarity-bar-fill {
+.rarity-stat.mythic .rarity-label {
     background: var(--mythic-color);
+    color: var(--text-white);
+}
+
+.rarity-value {
+    font-size: 0.85rem;
+    color: var(--text-gray);
+    font-weight: 500;
 }
 
 /* Filter Section */
 .filter-section {
-    margin-bottom: 2rem;
-    background: var(--background-light);
-    border-radius: 12px;
-    padding: 1.5rem;
-}
-
-.filter-section h2 {
-    font-family: 'Cinzel', serif;
-    color: var(--accent-color);
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(145deg, var(--bg-card) 0%, var(--bg-dark) 100%);
+    border-radius: 10px;
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .filter-controls {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 0.75rem;
 }
 
 .filter-controls select,
 .filter-controls input {
-    padding: 0.75rem 1rem;
-    border: 1px solid var(--secondary-color);
-    border-radius: 8px;
-    background: var(--background-dark);
+    padding: 0.7rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    background: var(--bg-darker);
     color: var(--text-light);
-    font-size: 1rem;
-    min-width: 180px;
+    font-size: 0.9rem;
+    font-family: 'Montserrat', sans-serif;
+    min-width: 160px;
     cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-controls select:hover,
+.filter-controls input:hover {
+    border-color: rgba(216, 75, 52, 0.4);
 }
 
 .filter-controls select:focus,
 .filter-controls input:focus {
     outline: none;
-    border-color: var(--accent-color);
+    border-color: var(--primary-red);
 }
 
 .filter-controls input {
     flex-grow: 1;
+}
+
+.filter-controls input::placeholder {
+    color: var(--text-muted);
 }
 
 /* Binder Section */
@@ -276,44 +320,46 @@ main {
     margin-bottom: 2rem;
 }
 
-.binder-section h2 {
-    font-family: 'Cinzel', serif;
-    color: var(--accent-color);
-    text-align: center;
-    margin-bottom: 1.5rem;
-}
-
 .binder-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 1rem;
+    gap: 1.25rem;
 }
 
+/* Card Slot */
 .card-slot {
     aspect-ratio: 488 / 680;
-    border-radius: 12px;
+    border-radius: 10px;
     overflow: hidden;
     position: relative;
     cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background: var(--background-light);
+    transition: all 0.4s ease;
+    background: var(--bg-card);
+    border: 2px solid transparent;
 }
 
 .card-slot:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 30px rgba(237, 137, 54, 0.3);
+    transform: scale(1.05) translateY(-6px);
     z-index: 10;
+}
+
+.card-slot.owned:hover {
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.5),
+        0 0 30px rgba(216, 75, 52, 0.2);
+    border-color: rgba(216, 75, 52, 0.4);
 }
 
 .card-slot img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: filter 0.3s ease;
+    transition: all 0.4s ease;
 }
 
+/* Missing card style */
 .card-slot.missing img {
-    filter: grayscale(100%) brightness(0.5);
+    filter: grayscale(100%) brightness(0.35) contrast(1.1);
 }
 
 .card-slot.missing::after {
@@ -323,76 +369,182 @@ main {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg,
+        rgba(0, 0, 0, 0.4) 0%,
+        rgba(0, 0, 0, 0.2) 50%,
+        rgba(0, 0, 0, 0.4) 100%);
     pointer-events: none;
 }
 
+.card-slot.missing:hover {
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Foil Effect - Subtle with periodic flash */
+.card-slot.foil {
+    border: 1px solid rgba(255, 220, 180, 0.3);
+}
+
+.card-slot.foil::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        105deg,
+        transparent 20%,
+        rgba(255, 255, 255, 0.08) 30%,
+        rgba(255, 220, 150, 0.12) 40%,
+        rgba(150, 255, 220, 0.12) 50%,
+        rgba(220, 150, 255, 0.12) 60%,
+        rgba(255, 255, 255, 0.08) 70%,
+        transparent 80%
+    );
+    pointer-events: none;
+    z-index: 2;
+    animation: foilFlash 30s ease-in-out infinite;
+}
+
+@keyframes foilFlash {
+    0%, 95% {
+        left: -100%;
+        opacity: 0;
+    }
+    96% {
+        opacity: 1;
+    }
+    100% {
+        left: 100%;
+        opacity: 0;
+    }
+}
+
+.card-slot.foil:hover::before {
+    animation: foilFlashHover 2s ease-in-out infinite;
+}
+
+@keyframes foilFlashHover {
+    0% {
+        left: -100%;
+        opacity: 0.8;
+    }
+    100% {
+        left: 100%;
+        opacity: 0.8;
+    }
+}
+
+/* Subtle holographic overlay for foil */
+.card-slot.foil .foil-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(
+            135deg,
+            transparent 40%,
+            rgba(255, 200, 150, 0.05) 45%,
+            rgba(150, 200, 255, 0.05) 50%,
+            rgba(200, 150, 255, 0.05) 55%,
+            transparent 60%
+        );
+    pointer-events: none;
+    z-index: 3;
+    opacity: 1;
+}
+
+/* Card badges - Small and subtle */
 .card-slot .card-number {
     position: absolute;
-    top: 8px;
-    left: 8px;
+    top: 6px;
+    left: 6px;
     background: rgba(0, 0, 0, 0.7);
-    color: white;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    font-weight: 600;
+    color: var(--text-gray);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.65rem;
+    font-weight: 500;
+    z-index: 5;
+    font-family: 'Montserrat', sans-serif;
+    opacity: 0.8;
 }
 
 .card-slot .card-rarity-indicator {
     position: absolute;
-    bottom: 8px;
-    right: 8px;
-    width: 24px;
-    height: 24px;
+    bottom: 6px;
+    right: 6px;
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.7rem;
+    font-size: 0.55rem;
     font-weight: 700;
+    z-index: 5;
+    font-family: 'Cinzel', serif;
+    opacity: 0.85;
 }
 
 .card-slot .card-rarity-indicator.common {
     background: var(--common-color);
+    color: var(--text-white);
 }
 
 .card-slot .card-rarity-indicator.uncommon {
     background: var(--uncommon-color);
+    color: var(--bg-dark);
 }
 
 .card-slot .card-rarity-indicator.rare {
     background: var(--rare-color);
-    color: var(--background-dark);
+    color: var(--bg-dark);
 }
 
 .card-slot .card-rarity-indicator.mythic {
     background: var(--mythic-color);
+    color: var(--text-white);
 }
 
+/* Owned badge - Very subtle */
 .card-slot .owned-badge {
     position: absolute;
-    top: 8px;
-    right: 8px;
-    background: var(--uncommon-color);
-    color: white;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 0.7rem;
+    top: 6px;
+    right: 6px;
+    background: rgba(90, 138, 60, 0.8);
+    color: var(--text-white);
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 0.55rem;
     font-weight: 600;
+    z-index: 5;
+    font-family: 'Montserrat', sans-serif;
+    opacity: 0.75;
 }
 
+/* Foil badge - Very subtle */
 .card-slot .foil-badge {
     position: absolute;
-    bottom: 8px;
-    left: 8px;
-    background: linear-gradient(135deg, #a855f7, #3b82f6, #22c55e, #eab308);
-    color: white;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    bottom: 6px;
+    left: 6px;
+    background: linear-gradient(135deg,
+        rgba(255, 180, 150, 0.85),
+        rgba(180, 150, 255, 0.85)
+    );
+    color: var(--bg-darker);
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 0.5rem;
+    font-weight: 700;
+    z-index: 5;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.5px;
+    opacity: 0.8;
 }
 
 /* Loading State */
@@ -407,8 +559,8 @@ main {
 .spinner {
     width: 50px;
     height: 50px;
-    border: 4px solid var(--background-light);
-    border-top-color: var(--accent-color);
+    border: 3px solid var(--bg-card);
+    border-top-color: var(--primary-red);
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
@@ -420,33 +572,41 @@ main {
 }
 
 .loading p {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     color: var(--text-muted);
+    letter-spacing: 2px;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.85rem;
 }
 
 /* Error State */
 .error {
     text-align: center;
     padding: 2rem;
-    background: rgba(229, 62, 62, 0.1);
-    border: 1px solid #e53e3e;
-    border-radius: 12px;
+    background: rgba(216, 75, 52, 0.1);
+    border: 1px solid rgba(216, 75, 52, 0.3);
+    border-radius: 10px;
 }
 
 .error button {
     margin-top: 1rem;
     padding: 0.75rem 1.5rem;
-    background: var(--accent-color);
+    background: var(--primary-red);
     border: none;
-    border-radius: 8px;
-    color: white;
+    border-radius: 6px;
+    color: var(--text-white);
     font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.85rem;
 }
 
 .error button:hover {
-    background: #c05621;
+    background: var(--primary-red-light);
 }
 
 .hidden {
@@ -460,22 +620,25 @@ main {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.9);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1000;
     padding: 1rem;
+    backdrop-filter: blur(5px);
 }
 
 .modal-content {
-    background: var(--background-light);
-    border-radius: 16px;
+    background: linear-gradient(145deg, var(--bg-card) 0%, var(--bg-dark) 100%);
+    border-radius: 12px;
     max-width: 800px;
     width: 100%;
     max-height: 90vh;
     overflow-y: auto;
     position: relative;
+    border: 1px solid rgba(216, 75, 52, 0.2);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
 }
 
 .modal-close {
@@ -484,18 +647,19 @@ main {
     right: 1rem;
     width: 40px;
     height: 40px;
-    border: none;
-    background: var(--background-dark);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--bg-darker);
     color: var(--text-light);
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     border-radius: 50%;
     cursor: pointer;
     z-index: 10;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .modal-close:hover {
-    background: var(--accent-color);
+    background: var(--primary-red);
+    border-color: var(--primary-red);
 }
 
 .modal-body {
@@ -514,8 +678,9 @@ main {
 .modal-body img {
     width: 100%;
     max-width: 300px;
-    border-radius: 12px;
+    border-radius: 10px;
     margin: 0 auto 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
 @media (min-width: 600px) {
@@ -530,60 +695,58 @@ main {
 
 .modal-info h2 {
     font-family: 'Cinzel', serif;
-    color: var(--accent-color);
+    color: var(--text-white);
     margin-bottom: 0.5rem;
+    font-size: 1.4rem;
 }
 
 .modal-info > p {
     color: var(--text-muted);
     margin-bottom: 1rem;
+    font-size: 0.9rem;
 }
 
 .modal-details {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .rarity-badge,
 .color-badge {
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 0.85rem;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
     font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
 }
 
-.rarity-badge.common {
-    background: var(--common-color);
-}
-
-.rarity-badge.uncommon {
-    background: var(--uncommon-color);
-}
-
-.rarity-badge.rare {
-    background: var(--rare-color);
-    color: var(--background-dark);
-}
-
-.rarity-badge.mythic {
-    background: var(--mythic-color);
-}
+.rarity-badge.common { background: var(--common-color); color: var(--text-white); }
+.rarity-badge.uncommon { background: var(--uncommon-color); color: var(--bg-dark); }
+.rarity-badge.rare { background: var(--rare-color); color: var(--bg-dark); }
+.rarity-badge.mythic { background: var(--mythic-color); color: var(--text-white); }
 
 .color-badge {
-    background: var(--secondary-color);
+    background: var(--bg-darker);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-light);
 }
 
 .modal-prices {
-    background: var(--background-dark);
+    background: var(--bg-darker);
     padding: 1rem;
     border-radius: 8px;
     margin-bottom: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .modal-prices p {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
 }
 
 .modal-prices p:last-child {
@@ -591,13 +754,16 @@ main {
 }
 
 .modal-status {
-    background: var(--background-dark);
+    background: var(--bg-darker);
     padding: 1rem;
     border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .modal-status p {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
 }
 
 .modal-status p:last-child {
@@ -605,29 +771,92 @@ main {
 }
 
 .modal-status .owned {
-    color: var(--uncommon-color);
+    color: var(--earth-primary);
 }
 
 .modal-status .missing {
-    color: #e53e3e;
+    color: var(--primary-red);
 }
 
 /* Footer */
 footer {
     text-align: center;
-    padding: 2rem;
+    padding: 2rem 1rem;
+    background: var(--bg-darker);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.footer-logo {
+    height: 30px;
+    width: auto;
+    margin-bottom: 0.75rem;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+.footer-logo:hover {
+    opacity: 0.8;
+}
+
+footer p {
     color: var(--text-muted);
-    border-top: 1px solid var(--secondary-color);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    margin-bottom: 0.3rem;
+}
+
+.footer-disclaimer {
+    font-size: 0.7rem !important;
+    opacity: 0.6;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
+    .hero-background {
+        min-height: 280px;
+    }
+
     header h1 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
+        letter-spacing: 3px;
+    }
+
+    .logos-container {
+        gap: 1rem;
+    }
+
+    .mtg-logo {
+        height: 35px;
+    }
+
+    .avatar-logo {
+        height: 55px;
+    }
+
+    .logo-separator {
+        font-size: 1.5rem;
+    }
+
+    .percentage-number {
+        font-size: 3rem;
+    }
+
+    .percentage-symbol {
+        font-size: 1.5rem;
+    }
+
+    .rarity-stats-row {
+        gap: 0.75rem;
     }
 
     .binder-grid {
         grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 1rem;
     }
 
     .filter-controls {
@@ -637,20 +866,57 @@ footer {
     .filter-controls select,
     .filter-controls input {
         width: 100%;
+        min-width: unset;
     }
 }
 
 @media (max-width: 480px) {
+    .hero-background {
+        min-height: 250px;
+    }
+
     header h1 {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
+        letter-spacing: 2px;
+    }
+
+    header .subtitle {
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+    }
+
+    .mtg-logo {
+        height: 30px;
+    }
+
+    .avatar-logo {
+        height: 45px;
+    }
+
+    .percentage-number {
+        font-size: 2.5rem;
     }
 
     .binder-grid {
         grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-        gap: 0.5rem;
+        gap: 0.75rem;
     }
 
-    .rarity-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .stats-summary {
+        padding: 1rem;
+    }
+
+    .rarity-stat {
+        padding: 0.3rem 0.6rem;
+    }
+
+    .rarity-label {
+        width: 18px;
+        height: 18px;
+        font-size: 0.75rem;
+    }
+
+    .rarity-value {
+        font-size: 0.75rem;
     }
 }
