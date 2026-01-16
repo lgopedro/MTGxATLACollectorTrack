@@ -299,6 +299,7 @@ function createCardElement(card) {
     if (card.foil && card.owned) {
         classes.push('foil');
     }
+    classes.push(`rarity-${normalizeRarity(card.rarity).toLowerCase()}`);
     div.className = classes.join(' ');
     div.onclick = () => openModal(card);
 
