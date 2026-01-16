@@ -826,6 +826,35 @@ main {
     }
 }
 
+@media (max-width: 600px) {
+    .modal-content {
+        width: 92vw;
+        max-height: 88vh;
+        border-radius: 10px;
+    }
+
+    .modal-body {
+        padding: 1.25rem;
+    }
+
+    .modal-body img {
+        max-width: 240px;
+    }
+
+    .modal-close {
+        width: 34px;
+        height: 34px;
+        font-size: 1.1rem;
+        top: 0.75rem;
+        right: 0.75rem;
+    }
+
+    .modal-prices p,
+    .modal-status p {
+        font-size: 0.85rem;
+    }
+}
+
 .modal-body img {
     width: 100%;
     max-width: 300px;
