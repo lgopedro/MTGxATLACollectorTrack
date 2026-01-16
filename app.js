@@ -329,22 +329,6 @@ function createCardElement(card) {
         div.appendChild(numberBadge);
     }
 
-    // Owned badge (only for owned cards)
-    if (card.owned && card.quantity > 0) {
-        const ownedBadge = document.createElement('span');
-        ownedBadge.className = 'owned-badge';
-        ownedBadge.textContent = `x${card.quantity}`;
-        div.appendChild(ownedBadge);
-    }
-
-    // Foil badge
-    if (card.foil && card.owned) {
-        const foilBadge = document.createElement('span');
-        foilBadge.className = 'foil-badge';
-        foilBadge.textContent = 'FOIL';
-        div.appendChild(foilBadge);
-    }
-
     // Rarity indicator
     const rarityIndicator = document.createElement('span');
     rarityIndicator.className = `card-rarity-indicator ${normalizeRarity(card.rarity).toLowerCase()}`;
