@@ -853,9 +853,9 @@ main {
     flex: 1;
 }
 
-.modal-info h2 {
+#modal-name {
     font-family: 'Cinzel', serif;
-    color: var(--text-white);
+    color: #000000;
     margin-bottom: 0.5rem;
     font-size: 1.4rem;
 }
