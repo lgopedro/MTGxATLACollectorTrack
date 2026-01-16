@@ -305,9 +305,10 @@ function createCardElement(card) {
 
     // Card image
     const img = document.createElement('img');
-    img.src = card.imageUrl || 'https://via.placeholder.com/244x340?text=No+Image';
+    img.src = getCardImageUrl(card.imageUrl) || 'https://via.placeholder.com/244x340?text=No+Image';
     img.alt = card.name;
     img.loading = 'lazy';
+    img.decoding = 'async';
     img.onerror = () => {
         img.src = 'https://via.placeholder.com/244x340?text=No+Image';
     };
@@ -351,6 +352,19 @@ function createCardElement(card) {
     div.appendChild(rarityIndicator);
 
     return div;
+}
+
+// Prefer higher-res card images when available (e.g. Scryfall URLs)
+function getCardImageUrl(url) {
+    if (!url) return '';
+    let upgraded = String(url);
+
+    upgraded = upgraded.replace('/small/', '/large/');
+    upgraded = upgraded.replace('/normal/', '/large/');
+    upgraded = upgraded.replace('version=normal', 'version=large');
+    upgraded = upgraded.replace('version=small', 'version=large');
+
+    return upgraded;
 }
 
 // Get rarity letter

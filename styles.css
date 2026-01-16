@@ -12,17 +12,17 @@
     --primary-red-dark: #b93b0d;
 
     /* Background Colors */
-    --bg-dark: #2e2e33;
-    --bg-darker: #222222;
-    --bg-darkest: #1a1a1f;
-    --bg-card: #3a3a40;
-    --bg-card-hover: #43484f;
+    --bg-dark: #e6dfd5;
+    --bg-darker: #d9d1c6;
+    --bg-darkest: #efe8de;
+    --bg-card: #ffffff;
+    --bg-card-hover: #eee5d8;
 
     /* Text Colors */
     --text-white: #ffffff;
-    --text-light: #f2f5fa;
-    --text-gray: #e2e6ee;
-    --text-muted: #858585;
+    --text-light: #2b2f36;
+    --text-gray: #4a5059;
+    --text-muted: #6b7078;
 
     /* Accent Colors */
     --accent-purple: #9c63ff;
@@ -44,7 +44,12 @@
 
 body {
     font-family: 'Montserrat', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: var(--bg-darkest);
+    background:
+        linear-gradient(180deg, rgba(239, 232, 222, 0.85) 0%, rgba(239, 232, 222, 0.95) 100%),
+        url('https://images.ctfassets.net/s5n2t79q9icq/7cG61SMgdr7tiyXIVx9MZk/e7ba20e0316166c6166c0b2abcbbb412/iDEX9UWQaz.jpg');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
     color: var(--text-light);
     min-height: 100vh;
     line-height: 1.6;
@@ -62,7 +67,7 @@ body {
 .hero-background {
     position: relative;
     min-height: 320px;
-    background-image: url('https://images.ctfassets.net/s5n2t79q9icq/7cG61SMgdr7tiyXIVx9MZk/e7ba20e0316166c6166c0b2abcbbb412/iDEX9UWQaz.jpg');
+    background-image: url('https://images.ctfassets.net/s5n2t79q9icq/7Hr97O2CnFWKItcar59hdo/c65b403f230d47ceadecf20b32d9a53c/nL8awROjgz_1600x1080.jpg?q=70&w=1920&fm=webp');
     background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;
@@ -79,9 +84,9 @@ body {
     bottom: 0;
     background: linear-gradient(
         180deg,
-        rgba(30, 30, 35, 0.4) 0%,
-        rgba(30, 30, 35, 0.7) 60%,
-        rgba(26, 26, 31, 1) 100%
+        rgba(245, 240, 232, 0.35) 0%,
+        rgba(245, 240, 232, 0.55) 60%,
+        rgba(247, 242, 234, 0.95) 100%
     );
     pointer-events: none;
 }
@@ -170,10 +175,14 @@ main {
     align-items: center;
     gap: 1rem;
     margin-bottom: 2rem;
-    padding: 1.5rem;
-    background: linear-gradient(145deg, var(--bg-card) 0%, var(--bg-dark) 100%);
+    padding: 1.1rem;
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.6) 0%, rgba(230, 223, 213, 0.7) 100%),
+        url('https://images.ctfassets.net/s5n2t79q9icq/5CxHRbSigDk3Ivqmc4F6Aj/60ab89410a90e59f3a6728bbff92e923/nbd7UUu8D30_03.jpg?fm=webp');
+    background-size: cover;
+    background-position: center;
     border-radius: 12px;
-    border: 1px solid rgba(216, 75, 52, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .main-stat {
@@ -189,23 +198,23 @@ main {
 
 .percentage-number {
     font-family: 'Cinzel', serif;
-    font-size: 4rem;
+    font-size: 3.1rem;
     font-weight: 700;
     color: var(--primary-red);
     line-height: 1;
-    text-shadow: 0 0 30px rgba(216, 75, 52, 0.4);
+    text-shadow: 0 0 18px rgba(216, 75, 52, 0.25);
 }
 
 .percentage-symbol {
     font-family: 'Cinzel', serif;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 600;
     color: var(--primary-red);
     opacity: 0.8;
 }
 
 .total-count {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: var(--text-muted);
     margin-top: 0.3rem;
     letter-spacing: 1px;
@@ -215,7 +224,7 @@ main {
 .rarity-stats-row {
     display: flex;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 1rem;
     flex-wrap: wrap;
 }
 
@@ -223,18 +232,18 @@ main {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.4rem 0.8rem;
+    padding: 0.3rem 0.6rem;
     background: var(--bg-darker);
     border-radius: 6px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .rarity-label {
     font-family: 'Cinzel', serif;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     font-weight: 700;
-    width: 22px;
-    height: 22px;
+    width: 18px;
+    height: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -262,7 +271,7 @@ main {
 }
 
 .rarity-value {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     color: var(--text-gray);
     font-weight: 500;
 }
@@ -270,10 +279,14 @@ main {
 /* Filter Section */
 .filter-section {
     margin-bottom: 1.5rem;
-    background: linear-gradient(145deg, var(--bg-card) 0%, var(--bg-dark) 100%);
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.92) 0%, rgba(230, 223, 213, 0.94) 100%),
+        url('https://images.ctfassets.net/s5n2t79q9icq/4IXvl2uDfZRCPIcaSMJxEn/baea3f57c522ff0398f91cd39b9335c4/2IecP6lKuh.jpg?q=80&w=1920&h=757&fit=crop&f=center&fm=webp');
+    background-size: cover;
+    background-position: center;
     border-radius: 10px;
     padding: 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .filter-controls {
@@ -284,12 +297,12 @@ main {
 
 .filter-controls select,
 .filter-controls input {
-    padding: 0.7rem 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.7rem 1.6rem 0.7rem 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: 6px;
-    background: var(--bg-darker);
+    background: #ffffff;
     color: var(--text-light);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-family: 'Montserrat', sans-serif;
     min-width: 160px;
     cursor: pointer;
@@ -335,7 +348,7 @@ main {
     cursor: pointer;
     transition: all 0.4s ease;
     background: var(--bg-card);
-    border: 2px solid transparent;
+    border: none;
     --rarity-glow: transparent;
 }
 
@@ -371,7 +384,7 @@ main {
     box-shadow:
         0 15px 40px rgba(0, 0, 0, 0.5),
         0 0 16px var(--rarity-glow);
-    border-color: rgba(255, 255, 255, 0.2);
+    border-color: transparent;
 }
 
 .card-slot img {
@@ -426,12 +439,12 @@ main {
 
 .card-slot.missing:hover {
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
-    border-color: rgba(255, 255, 255, 0.08);
+    border-color: transparent;
 }
 
 /* Foil Effect - Subtle with periodic flash */
 .card-slot.foil {
-    border: 3px solid transparent;
+    border: none;
 }
 
 .card-slot.foil img {
@@ -439,24 +452,7 @@ main {
 }
 
 .card-slot.foil::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 10px;
-    padding: 3px;
-    background: linear-gradient(
-        135deg,
-        rgba(255, 220, 180, 0.95),
-        rgba(150, 220, 255, 0.9),
-        rgba(150, 255, 210, 0.9)
-    );
-    pointer-events: none;
-    z-index: 2;
-    opacity: 0.9;
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    animation: foilBorderPulse 3s ease-in-out infinite;
+    display: none;
 }
 
 .card-slot.foil::after {
@@ -482,37 +478,36 @@ main {
 }
 
 .card-slot.foil:hover::before {
-    opacity: 0.75;
-    animation-duration: 6s;
+    display: none;
 }
 
 .card-slot.foil.owned:hover {
     border-color: transparent;
 }
 
-.card-slot.owned:not(.foil).rarity-common:hover {
-    border-color: var(--common-color);
+.card-slot:not(.foil).rarity-common:hover {
+    border-color: transparent;
     box-shadow:
         0 15px 40px rgba(0, 0, 0, 0.5),
         0 0 28px rgba(83, 83, 86, 0.5);
 }
 
-.card-slot.owned:not(.foil).rarity-uncommon:hover {
-    border-color: var(--uncommon-color);
+.card-slot:not(.foil).rarity-uncommon:hover {
+    border-color: transparent;
     box-shadow:
         0 15px 40px rgba(0, 0, 0, 0.5),
         0 0 28px rgba(133, 133, 133, 0.5);
 }
 
-.card-slot.owned:not(.foil).rarity-rare:hover {
-    border-color: var(--rare-color);
+.card-slot:not(.foil).rarity-rare:hover {
+    border-color: transparent;
     box-shadow:
         0 15px 40px rgba(0, 0, 0, 0.5),
         0 0 28px rgba(212, 168, 67, 0.55);
 }
 
-.card-slot.owned:not(.foil).rarity-mythic:hover {
-    border-color: var(--mythic-color);
+.card-slot:not(.foil).rarity-mythic:hover {
+    border-color: transparent;
     box-shadow:
         0 15px 40px rgba(0, 0, 0, 0.5),
         0 0 28px rgba(234, 54, 1, 0.55);
@@ -963,7 +958,7 @@ footer {
     text-align: center;
     padding: 2rem 1rem;
     background: var(--bg-darker);
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .footer-content {
